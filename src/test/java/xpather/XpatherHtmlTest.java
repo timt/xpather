@@ -30,15 +30,16 @@ import static xpather.XpathPredicate.containing;
 
 public class XpatherHtmlTest {
 
+    private static final String TEST_WEB_PAGE_HTML = "TestWebPage.html";
     private Document htmlDocument;
     private String html;
 
     @Before
-    public void loadTestWebPageAsDocument() throws IOException, URISyntaxException, ParserConfigurationException, SAXException {
+    public void loadTestWebPage() throws IOException, URISyntaxException, ParserConfigurationException, SAXException {
         Tidy tidy = new Tidy();
         tidy.setShowWarnings(false);
         htmlDocument = tidy
-                .parseDOM(getClass().getResourceAsStream("TestWebPage.html"), new NullStream());
+                .parseDOM(getClass().getResourceAsStream(TEST_WEB_PAGE_HTML), new NullStream());
         html = prettyPrintNodeList(htmlDocument);
     }
 
@@ -76,7 +77,7 @@ public class XpatherHtmlTest {
     }
 
     @Test
-    public void containsWillFindTagWithAttributeWithClassOfValue() throws TransformerException, IOException, XPathExpressionException {
+    public void cssWillFindTagWithAttributeWithClassOfValue() throws TransformerException, IOException, XPathExpressionException {
         String actual = runXpath(xPath().with(any(div().with(css("full-button")))));
         assertEquals(
                 "<div class=\"full-button\">\n" +
@@ -87,6 +88,11 @@ public class XpatherHtmlTest {
                 actual);
     }
 
+    @Test
+    public void containingWillFindTagWithAttributeWithClassOfValue() throws TransformerException, IOException, XPathExpressionException {
+        String actual = runXpath(xPath().with(any(div().with(css(containing("some-other-class"))))));
+        assertEquals("<div style=\"display:none\" class=\"metabox-loader, some-other-class\" id=\"repo_details_loader\">Sending Request</div>", actual);
+    }
 
 
     @Test
