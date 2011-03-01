@@ -7,7 +7,7 @@ public class XpathPredicate implements XpathFragment{
         this.predicate = predicate;
     }
 
-    static XpathPredicate xPathPredicate(String predicate) {
+    static XpathPredicate xpathPredicate(String predicate) {
         return new XpathPredicate(predicate);
     }
 
@@ -15,7 +15,7 @@ public class XpathPredicate implements XpathFragment{
         return new XpathEnricher() {
             @Override
             public XpathFragment enrich(XpathFragment xpathFragment) {
-                return xPathPredicate("contains("+ xpathFragment.toXpath()+",'"+ value +"')");
+                return xpathPredicate("contains(" + xpathFragment.toXpath() + ",'" + value + "')");
             }
         };
     }
@@ -24,7 +24,7 @@ public class XpathPredicate implements XpathFragment{
         return new XpathEnricher() {
             @Override
             public XpathFragment enrich(XpathFragment xpathFragment) {
-                return xPathPredicate(xpathFragment.toXpath() + "='" + value + "'");
+                return xpathPredicate(xpathFragment.toXpath() + "='" + value + "'");
             }
         };
     }
@@ -33,8 +33,7 @@ public class XpathPredicate implements XpathFragment{
         return new XpathEnricher() {
             @Override
             public XpathFragment enrich(XpathFragment xpathFragment) {
-                return new XpathComposite();
-                //new XpathPredicate(""+index);
+                return new XpathComposite(xpathFragment, xpathPredicate("" + index));
             }
         };
     }

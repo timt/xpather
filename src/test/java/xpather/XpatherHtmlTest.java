@@ -111,7 +111,10 @@ public class XpatherHtmlTest {
                                 .with(css("subnav-bar"))
                                 .with(ul().with(li(indexOf(2))))
                         )));
-        assertEquals("<div style=\"display:none\" class=\"metabox-loader, some-other-class\" id=\"repo_details_loader\">Sending Request</div>",
+        assertEquals(
+                "<li>\n" +
+                "    <a class=\"dropdown defunct\" href=\"#\">Switch Tags (0)</a>\n" +
+                "</li>",
                 actual);
 
     }

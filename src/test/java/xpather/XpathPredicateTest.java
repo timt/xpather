@@ -9,7 +9,7 @@ import static xpather.XpathPredicate.*;
 public class XpathPredicateTest {
     @Test
     public void toXpathWillPutContentsInSquareBrackets() {
-        assertThat(xPathPredicate("1").toXpath(), is("[1]"));
+        assertThat(xpathPredicate("1").toXpath(), is("[1]"));
     }
 
     @Test
@@ -22,6 +22,13 @@ public class XpathPredicateTest {
     public void containingWillReturnEqualsPredicateXpath() {
         XpathFragment someFragment = xpathFragment("something");
         assertThat(containing("aValue").enrich(someFragment).toXpath(), is("[contains(something,'aValue')]"));
+    }
+
+    @Test
+    public void indexOfWillAppendIndexPredicateToXpath(){
+        XpathFragment someFragment = xpathFragment("something");
+        assertThat(indexOf(2).enrich(someFragment).toXpath(), is("something[2]"));
+
     }
 
     private XpathFragment xpathFragment(final String something) {
