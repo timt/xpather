@@ -26,6 +26,11 @@ public class XpathComposite<T extends XpathComposite> implements XpathFragment {
         return xpath;
     }
 
+    @Override
+    public String toString() {
+        return toXpath();
+    }
+
     public T with(XpathFragment xpathFragment) {
         this.xpathFragments.add(xpathFragment);
         return (T)this;
