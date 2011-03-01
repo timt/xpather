@@ -5,15 +5,15 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 
-public class XpathComposite<T extends XpathComposite> implements XpathFragment {
+public class XpathExpression<T extends XpathExpression> implements XpathFragment {
     private List<XpathFragment> xpathFragments=new ArrayList<XpathFragment>();
 
-    public static XpathComposite xpathComposite(XpathFragment... xpathFragments) {
-        return new XpathComposite(xpathFragments);
+    public static XpathExpression xpathComposite(XpathFragment... xpathFragments) {
+        return new XpathExpression(xpathFragments);
 
     }
 
-    public XpathComposite(XpathFragment... xpathFragments) {
+    public XpathExpression(XpathFragment... xpathFragments) {
         this.xpathFragments.addAll(asList(xpathFragments));
     }
 
@@ -36,7 +36,7 @@ public class XpathComposite<T extends XpathComposite> implements XpathFragment {
         return (T)this;
     }
 
-    public static XpathComposite xPath() {
-        return new XpathComposite();
+    public static XpathExpression xPath() {
+        return new XpathExpression();
     }
 }

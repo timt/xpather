@@ -24,8 +24,8 @@ import static javax.xml.xpath.XPathFactory.newInstance;
 import static org.junit.Assert.assertEquals;
 import static xpather.HtmlXpathElement.*;
 import static xpather.XpathAttribute.id;
-import static xpather.XpathComposite.xPath;
 import static xpather.XpathElement.any;
+import static xpather.XpathExpression.xPath;
 import static xpather.XpathPredicate.containing;
 import static xpather.XpathPredicate.indexOf;
 
@@ -112,16 +112,10 @@ public class XpatherHtmlTest {
 
     @Test
     public void indexOfWillWorkInTheMiddleOfXpathExpression() {
-        XpathFragment xpathFragment = xPath()
-                .with(any(div()
-                        .with(css("subnav-bar"))
-                        .with(ul()
-                                .with(li(indexOf(2)))
-                                .with(anchor())
-                        )));
+        XpathFragment xpathFragment = xPath().with(any(div().with(css("subnav-bar")).with(ul().with(li(indexOf(2)).with(anchor())))));
 
         assertXpath(xpathFragment, locatesHtml(
-                        "<a class=\"dropdown defunct\" href=\"#\">Switch Tags (0)</a>"));
+                "<a class=\"dropdown defunct\" href=\"#\">Switch Tags (0)</a>"));
     }
 
     private void assertXpath(XpathFragment xpathFragment, String expectedHtmlToLocate) {

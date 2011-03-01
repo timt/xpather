@@ -21,12 +21,12 @@ public class HtmlXpathElement {
         return xpathElement("div");
     }
 
-    static XpathFragment css(String className) {
+    static XpathExpression css(String className) {
         return css(equalTo(className));
     }
 
-    static XpathFragment css(XpathEnricher xpathEnricher) {
-        return xpathEnricher.enrich(xpathAttribute("class"));
+    static XpathExpression css(XpathDecorator xpathDecorator) {
+        return xpathDecorator.decorate(xpathAttribute("class"));
     }
 
     static XpathElement ul(){
@@ -37,8 +37,8 @@ public class HtmlXpathElement {
         return xpathElement("li");
     }
 
-    static XpathFragment li(XpathEnricher xpathEnricher){
-        return xpathEnricher.enrich(li());
+    static XpathExpression li(XpathDecorator xpathDecorator){
+        return xpathDecorator.decorate(li());
     }
 
     static XpathElement anchor(){

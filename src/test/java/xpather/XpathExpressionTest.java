@@ -5,11 +5,11 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static xpather.XpathAttribute.xpathAttribute;
-import static xpather.XpathComposite.xpathComposite;
 import static xpather.XpathElement.xpathElement;
+import static xpather.XpathExpression.xpathComposite;
 import static xpather.XpathPredicate.xpathPredicate;
 
-public class XpathCompositeTest {
+public class XpathExpressionTest {
 
     @Test
     public void constructionWillCreateFragmentThatIsComposedOfPrameters() {
@@ -22,8 +22,8 @@ public class XpathCompositeTest {
 
     @Test
     public void withWillAddFragmentToXpathExpression(){
-        XpathComposite xpathComposite = xpathComposite();
-        String xPath = xpathComposite.with(xpathElement("Book")).toXpath();
+        XpathExpression xpathExpression = xpathComposite();
+        String xPath = xpathExpression.with(xpathElement("Book")).toXpath();
         assertThat(xPath,is("/Book"));
     }
 

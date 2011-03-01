@@ -15,19 +15,19 @@ public class XpathPredicateTest {
     @Test
     public void hasValueWillReturnEqualsPredicateXpath() {
         XpathFragment someFragment = xpathFragment("something");
-        assertThat(equalTo("aValue").enrich(someFragment).toXpath(), is("[something='aValue']"));
+        assertThat(equalTo("aValue").decorate(someFragment).toXpath(), is("[something='aValue']"));
     }
 
     @Test
     public void containingWillReturnEqualsPredicateXpath() {
         XpathFragment someFragment = xpathFragment("something");
-        assertThat(containing("aValue").enrich(someFragment).toXpath(), is("[contains(something,'aValue')]"));
+        assertThat(containing("aValue").decorate(someFragment).toXpath(), is("[contains(something,'aValue')]"));
     }
 
     @Test
     public void indexOfWillAppendIndexPredicateToXpath(){
         XpathFragment someFragment = xpathFragment("something");
-        assertThat(indexOf(2).enrich(someFragment).toXpath(), is("something[2]"));
+        assertThat(indexOf(2).decorate(someFragment).toXpath(), is("something[2]"));
 
     }
 

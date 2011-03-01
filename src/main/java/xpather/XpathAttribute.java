@@ -2,13 +2,16 @@ package xpather;
 
 import static xpather.XpathPredicate.equalTo;
 
-public class XpathAttribute implements XpathFragment {
-    public final String name;
+public class XpathAttribute extends XpathExpression<XpathAttribute>{
 
-    public XpathAttribute(String name) {
-        this.name = name;
+    public XpathAttribute(final String name) {
+        super(new XpathFragment() {
+            @Override
+            public String toXpath() {
+                return "@" + name;
+            }
+        });
     }
-
 
     static XpathAttribute xpathAttribute(String name) {
         return new XpathAttribute(name);
@@ -18,17 +21,12 @@ public class XpathAttribute implements XpathFragment {
         return xpathAttribute("id").ofValue(value);
     }
 
-    @Override
-    public String toXpath() {
-        return "@" + name;
-    }
-
     public XpathFragment ofValue(String value) {
-        return equalTo(value).enrich(this);
+        return equalTo(value).decorate(this);
     }
 
     public XpathFragment containing(String value) {
-        return XpathPredicate.containing(value).enrich(this);
+        return XpathPredicate.containing(value).decorate(this);
     }
 
 

@@ -1,45 +1,44 @@
 package xpather;
 
-public class XpathPredicate implements XpathFragment{
-    private String predicate;
+public class XpathPredicate extends XpathExpression<XpathPredicate>{
 
-    public XpathPredicate(String predicate) {
-        this.predicate = predicate;
+    public XpathPredicate(final String predicate) {
+        super(new XpathFragment() {
+            @Override
+            public String toXpath() {
+                return "["+predicate+"]";
+            }
+        });
     }
 
     static XpathPredicate xpathPredicate(String predicate) {
         return new XpathPredicate(predicate);
     }
 
-    public static XpathEnricher containing(final String value){
-        return new XpathEnricher() {
+    public static XpathDecorator<XpathPredicate> containing(final String value){
+        return new XpathDecorator<XpathPredicate>() {
             @Override
-            public XpathFragment enrich(XpathFragment xpathFragment) {
+            public XpathPredicate decorate(XpathFragment xpathFragment) {
                 return xpathPredicate("contains(" + xpathFragment.toXpath() + ",'" + value + "')");
             }
         };
     }
 
-    public static XpathEnricher equalTo(final String value){
-        return new XpathEnricher() {
+    public static XpathDecorator<XpathPredicate> equalTo(final String value){
+        return new XpathDecorator<XpathPredicate>() {
             @Override
-            public XpathFragment enrich(XpathFragment xpathFragment) {
+            public XpathPredicate decorate(XpathFragment xpathFragment) {
                 return xpathPredicate(xpathFragment.toXpath() + "='" + value + "'");
             }
         };
     }
 
-    public static XpathEnricher indexOf(final int index){
-        return new XpathEnricher() {
+    public static XpathDecorator<XpathExpression> indexOf(final int index){
+        return new XpathDecorator<XpathExpression>() {
             @Override
-            public XpathFragment enrich(XpathFragment xpathFragment) {
-                return new XpathComposite(xpathFragment, xpathPredicate("" + index));
+            public XpathExpression decorate(XpathFragment xpathFragment) {
+                return new XpathExpression(xpathFragment, xpathPredicate("" + index));
             }
         };
-    }
-
-    @Override
-    public String toXpath() {
-        return "["+predicate+"]";
     }
 }

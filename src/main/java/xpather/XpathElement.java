@@ -1,6 +1,6 @@
 package xpather;
 
-public class XpathElement extends XpathComposite<XpathElement> {
+public class XpathElement extends XpathExpression<XpathElement> {
 
     public XpathElement(final String name) {
         super(new XpathFragment() {
