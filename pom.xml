@@ -39,5 +39,13 @@
                 </configuration>
             </plugin>
         </plugins>
+        <testResources>
+            <testResource>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**/*.html</include>
+                </includes>
+            </testResource>
+        </testResources>
     </build>
 </project>

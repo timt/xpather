@@ -40,7 +40,7 @@ public class XpatherHtmlTest {
         Tidy tidy = new Tidy();
         tidy.setShowWarnings(false);
         htmlDocument = tidy
-                .parseDOM(getClass().getResourceAsStream(TEST_WEB_PAGE_HTML), new NullStream());
+                .parseDOM(getClass().getResource(TEST_WEB_PAGE_HTML).openStream(), new NullStream());
         html = prettyPrintNodeList(htmlDocument);
     }
 
