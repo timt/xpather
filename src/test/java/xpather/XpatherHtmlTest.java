@@ -24,8 +24,8 @@ import static javax.xml.xpath.XPathFactory.newInstance;
 import static org.junit.Assert.assertEquals;
 import static xpather.HtmlXpathElement.*;
 import static xpather.XpathAttribute.id;
+import static xpather.XpathComposite.xPath;
 import static xpather.XpathElement.any;
-import static xpather.XpathElement.xPath;
 import static xpather.XpathPredicate.containing;
 import static xpather.XpathPredicate.indexOf;
 
@@ -46,18 +46,18 @@ public class XpatherHtmlTest {
 
     @Test
     public void htmlWillReturnHtmlDocument() throws XPathExpressionException, TransformerException, IOException {
-        assertEquals(html, runXpath(xPath().with(html())));
+        assertEquals(html, parseHtmlWithXpath(xPath().with(html())));
     }
 
     @Test
     public void anyWillFindSubElementAnyWhere() throws XPathExpressionException, TransformerException, IOException {
-        String actual = runXpath(xPath().with(any(title())));
+        String actual = parseHtmlWithXpath(xPath().with(any(title())));
         assertEquals("<title>timt/xpather - GitHub</title>", actual);
     }
 
     @Test
     public void willChainHtmlElements() throws TransformerException, IOException, XPathExpressionException {
-        String actual = runXpath(
+        String actual = parseHtmlWithXpath(
                 xPath()
                         .with(html())
                         .with(head())
@@ -67,7 +67,7 @@ public class XpatherHtmlTest {
 
     @Test
     public void idWillFindTagWithIdOfValue() throws TransformerException, IOException, XPathExpressionException {
-        String actual = runXpath(xPath().with(any(div().with(id("pl-description")))));
+        String actual = parseHtmlWithXpath(xPath().with(any(div().with(id("pl-description")))));
         assertEquals(
                 "<div id=\"pl-description\" style=\"display:none\">\n" +
                         "    <p>\n" +
@@ -79,7 +79,7 @@ public class XpatherHtmlTest {
 
     @Test
     public void cssWillFindTagWithAttributeWithClassOfValue() throws TransformerException, IOException, XPathExpressionException {
-        String actual = runXpath(xPath().with(any(div().with(css("full-button")))));
+        String actual = parseHtmlWithXpath(xPath().with(any(div().with(css("full-button")))));
         assertEquals(
                 "<div class=\"full-button\">\n" +
                         "    <button class=\"classy\" type=\"submit\">\n" +
@@ -91,35 +91,32 @@ public class XpatherHtmlTest {
 
     @Test
     public void containingWillFindTagWithAttributeWithClassOfValue() throws TransformerException, IOException, XPathExpressionException {
-        String actual = runXpath(xPath().with(any(div().with(css(containing("some-other-class"))))));
+        String actual = parseHtmlWithXpath(xPath().with(any(div().with(css(containing("some-other-class"))))));
         assertEquals("<div style=\"display:none\" class=\"metabox-loader, some-other-class\" id=\"repo_details_loader\">Sending Request</div>", actual);
     }
 
 
     @Test
     public void cssWillFindTagWithAttributeClassContainingValue() throws TransformerException, IOException, XPathExpressionException {
-        String actual = runXpath(xPath().with(any(div().with(css(containing("some-other-class"))))));
+        String actual = parseHtmlWithXpath(xPath().with(any(div().with(css(containing("some-other-class"))))));
         assertEquals("<div style=\"display:none\" class=\"metabox-loader, some-other-class\" id=\"repo_details_loader\">Sending Request</div>",
                 actual);
     }
 
     @Test
     public void indexOfWillAppendAIndexPredicateToElement() throws TransformerException, IOException, XPathExpressionException {
-        String actual = runXpath(
-                xPath()
-                        .with(any(div()
-                                .with(css("subnav-bar"))
-                                .with(ul().with(li(indexOf(2))))
-                        )));
+        XpathFragment xpathFragment = xPath().with(any(div().with(css("subnav-bar")).with(ul().with(li(indexOf(2))))));
+        String actual = parseHtmlWithXpath(xpathFragment);
         assertEquals(
                 "<li>\n" +
-                "    <a class=\"dropdown defunct\" href=\"#\">Switch Tags (0)</a>\n" +
-                "</li>",
+                        "    <a class=\"dropdown defunct\" href=\"#\">Switch Tags (0)</a>\n" +
+                        "</li>",
                 actual);
 
     }
 
-    private String runXpath(XpathElement xpathElement) throws XPathExpressionException, TransformerException, IOException {
+
+    private String parseHtmlWithXpath(XpathFragment xpathElement) throws XPathExpressionException, TransformerException, IOException {
         System.out.println("xpathElement.toXpath() = " + xpathElement.toXpath());
         NodeList result = (NodeList) newInstance().newXPath().compile(xpathElement.toXpath()).evaluate(htmlDocument, XPathConstants.NODESET);
         return prettyPrintNodeList(result.item(0));

@@ -2,7 +2,6 @@ package xpather;
 
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static xpather.XpathElement.any;
@@ -16,7 +15,7 @@ public class XpathElementTest {
     }
 
     @Test
-    public void anyWillAddLeadingSlashToXpathElement(){
-        assertThat(any(xpathElement("Book")).toXpath(),is("//Book"));
+    public void anyWillAddLeadingSlashToXpathElement() {
+        assertThat(any(xpathElement("Book")).toXpath(), is("//Book"));
     }
 }

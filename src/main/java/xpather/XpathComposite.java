@@ -1,10 +1,20 @@
 package xpather;
 
-public class XpathComposite implements XpathFragment {
-    private XpathFragment[] xpathFragments;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Arrays.asList;
+
+public class XpathComposite<T extends XpathComposite> implements XpathFragment {
+    private List<XpathFragment> xpathFragments=new ArrayList<XpathFragment>();
+
+    public static XpathComposite xpathComposite(XpathFragment... xpathFragments) {
+        return new XpathComposite(xpathFragments);
+
+    }
 
     public XpathComposite(XpathFragment... xpathFragments) {
-        this.xpathFragments = xpathFragments;
+        this.xpathFragments.addAll(asList(xpathFragments));
     }
 
     @Override
@@ -14,5 +24,14 @@ public class XpathComposite implements XpathFragment {
             xpath += xpathFragment.toXpath();
         }
         return xpath;
+    }
+
+    public T with(XpathFragment xpathFragment) {
+        this.xpathFragments.add(xpathFragment);
+        return (T)this;
+    }
+
+    public static XpathComposite xPath() {
+        return new XpathComposite();
     }
 }
