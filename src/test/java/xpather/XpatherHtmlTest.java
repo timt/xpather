@@ -110,6 +110,20 @@ public class XpatherHtmlTest {
                         "</li>"));
     }
 
+    @Test
+    public void indexOfWillWorkInTheMiddleOfXpathExpression() {
+        XpathFragment xpathFragment = xPath()
+                .with(any(div()
+                        .with(css("subnav-bar"))
+                        .with(ul()
+                                .with(li(indexOf(2)))
+                                .with(anchor())
+                        )));
+
+        assertXpath(xpathFragment, locatesHtml(
+                        "<a class=\"dropdown defunct\" href=\"#\">Switch Tags (0)</a>"));
+    }
+
     private void assertXpath(XpathFragment xpathFragment, String expectedHtmlToLocate) {
         assertEquals(parseHtmlWithXpath(xpathFragment), expectedHtmlToLocate);
     }

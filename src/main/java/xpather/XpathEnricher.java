@@ -1,5 +1,5 @@
 package xpather;
 
-public interface XpathEnricher {
-    XpathFragment enrich(XpathFragment xpathFragment);
+public interface XpathEnricher<T extends XpathFragment> {
+    T enrich(XpathFragment xpathFragment);
 }

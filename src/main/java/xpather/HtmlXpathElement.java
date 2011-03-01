@@ -41,4 +41,8 @@ public class HtmlXpathElement {
         return xpathEnricher.enrich(li());
     }
 
+    static XpathElement anchor(){
+        return xpathElement("a");
+    }
+
 }
