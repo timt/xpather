@@ -11,19 +11,11 @@ public class XpathPredicate implements XpathFragment{
         return new XpathPredicate(predicate);
     }
 
-    static XpathPredicate hasValue(XpathFragment xpathFragment, String value){
-        return xPathPredicate(xpathFragment.toXpath() + "='" + value + "'");
-    }
-
-    public static XpathPredicate containing(XpathFragment xpathFragment, String value) {
-        return xPathPredicate("contains("+xpathFragment.toXpath()+",'"+value+"')");
-    }
-
     public static XpathEnricher containing(final String value){
         return new XpathEnricher() {
             @Override
             public XpathFragment enrich(XpathFragment xpathFragment) {
-                return containing(xpathFragment, value);
+                return xPathPredicate("contains("+ xpathFragment.toXpath()+",'"+ value +"')");
             }
         };
     }
@@ -32,7 +24,17 @@ public class XpathPredicate implements XpathFragment{
         return new XpathEnricher() {
             @Override
             public XpathFragment enrich(XpathFragment xpathFragment) {
-                return hasValue(xpathFragment, value);
+                return xPathPredicate(xpathFragment.toXpath() + "='" + value + "'");
+            }
+        };
+    }
+
+    public static XpathEnricher indexOf(final int index){
+        return new XpathEnricher() {
+            @Override
+            public XpathFragment enrich(XpathFragment xpathFragment) {
+                return new XpathComposite();
+                //new XpathPredicate(""+index);
             }
         };
     }

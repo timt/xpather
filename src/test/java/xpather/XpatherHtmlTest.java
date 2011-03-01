@@ -27,6 +27,7 @@ import static xpather.XpathAttribute.id;
 import static xpather.XpathElement.any;
 import static xpather.XpathElement.xPath;
 import static xpather.XpathPredicate.containing;
+import static xpather.XpathPredicate.indexOf;
 
 public class XpatherHtmlTest {
 
@@ -102,8 +103,21 @@ public class XpatherHtmlTest {
                 actual);
     }
 
+    @Test
+    public void indexOfWillAppendAIndexPredicateToElement() throws TransformerException, IOException, XPathExpressionException {
+        String actual = runXpath(
+                xPath()
+                        .with(any(div()
+                                .with(css("subnav-bar"))
+                                .with(ul().with(li(indexOf(2))))
+                        )));
+        assertEquals("<div style=\"display:none\" class=\"metabox-loader, some-other-class\" id=\"repo_details_loader\">Sending Request</div>",
+                actual);
+
+    }
 
     private String runXpath(XpathElement xpathElement) throws XPathExpressionException, TransformerException, IOException {
+        System.out.println("xpathElement.toXpath() = " + xpathElement.toXpath());
         NodeList result = (NodeList) newInstance().newXPath().compile(xpathElement.toXpath()).evaluate(htmlDocument, XPathConstants.NODESET);
         return prettyPrintNodeList(result.item(0));
     }

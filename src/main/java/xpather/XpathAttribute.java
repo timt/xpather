@@ -1,6 +1,6 @@
 package xpather;
 
-import static xpather.XpathPredicate.hasValue;
+import static xpather.XpathPredicate.equalTo;
 
 public class XpathAttribute implements XpathFragment {
     public final String name;
@@ -24,11 +24,11 @@ public class XpathAttribute implements XpathFragment {
     }
 
     public XpathFragment ofValue(String value) {
-        return hasValue(this, value);
+        return equalTo(value).enrich(this);
     }
 
     public XpathFragment containing(String value) {
-        return XpathPredicate.containing(this, value);
+        return XpathPredicate.containing(value).enrich(this);
     }
 
 

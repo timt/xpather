@@ -4,9 +4,7 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static xpather.XpathPredicate.containing;
-import static xpather.XpathPredicate.hasValue;
-import static xpather.XpathPredicate.xPathPredicate;
+import static xpather.XpathPredicate.*;
 
 public class XpathPredicateTest {
     @Test
@@ -17,13 +15,13 @@ public class XpathPredicateTest {
     @Test
     public void hasValueWillReturnEqualsPredicateXpath() {
         XpathFragment someFragment = xpathFragment("something");
-        assertThat(hasValue(someFragment, "aValue").toXpath(), is("[something='aValue']"));
+        assertThat(equalTo("aValue").enrich(someFragment).toXpath(), is("[something='aValue']"));
     }
 
     @Test
     public void containingWillReturnEqualsPredicateXpath() {
         XpathFragment someFragment = xpathFragment("something");
-        assertThat(containing(someFragment, "aValue").toXpath(), is("[contains(something,'aValue')]"));
+        assertThat(containing("aValue").enrich(someFragment).toXpath(), is("[contains(something,'aValue')]"));
     }
 
     private XpathFragment xpathFragment(final String something) {

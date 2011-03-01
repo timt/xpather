@@ -1,5 +1,6 @@
 package xpather;
 
+import static xpather.XpathAttribute.xpathAttribute;
 import static xpather.XpathElement.xpathElement;
 import static xpather.XpathPredicate.equalTo;
 
@@ -25,7 +26,19 @@ public class HtmlXpathElement {
     }
 
     static XpathFragment css(XpathEnricher xpathEnricher) {
-        return xpathEnricher.enrich(XpathAttribute.xpathAttribute("class"));
+        return xpathEnricher.enrich(xpathAttribute("class"));
+    }
+
+    static XpathElement ul(){
+        return xpathElement("ul");
+    }
+
+    static XpathElement li(){
+        return xpathElement("li");
+    }
+
+    static XpathFragment li(XpathEnricher xpathEnricher){
+        return xpathEnricher.enrich(li());
     }
 
 }
