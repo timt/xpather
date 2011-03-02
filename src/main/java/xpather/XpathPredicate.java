@@ -29,7 +29,7 @@ public class XpathPredicate extends XpathExpression<XpathPredicate>{
         };
     }
 
-    public static XpathDecorator<XpathExpression> indexOf(final int index){
+    public static XpathDecorator<XpathExpression> atIndex(final int index){
         return new XpathDecorator<XpathExpression>() {
             @Override
             public XpathExpression decorate(XpathFragment xpathFragment) {

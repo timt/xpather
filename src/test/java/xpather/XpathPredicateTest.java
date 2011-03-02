@@ -27,7 +27,7 @@ public class XpathPredicateTest {
     @Test
     public void indexOfWillAppendIndexPredicateToXpath(){
         XpathFragment someFragment = xpathFragment("something");
-        assertThat(indexOf(2).decorate(someFragment).toXpath(), is("something[2]"));
+        assertThat(atIndex(2).decorate(someFragment).toXpath(), is("something[2]"));
 
     }
 

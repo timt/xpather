@@ -10,15 +10,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.tidy.Tidy;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.net.URISyntaxException;
 
 import static javax.xml.xpath.XPathFactory.newInstance;
 import static org.junit.Assert.assertEquals;
@@ -26,8 +23,8 @@ import static xpather.HtmlXpathElement.*;
 import static xpather.XpathAttribute.id;
 import static xpather.XpathElement.any;
 import static xpather.XpathExpression.xPath;
+import static xpather.XpathPredicate.atIndex;
 import static xpather.XpathPredicate.containing;
-import static xpather.XpathPredicate.indexOf;
 
 public class XpatherHtmlTest {
 
@@ -36,7 +33,7 @@ public class XpatherHtmlTest {
     private String html;
 
     @Before
-    public void loadTestWebPage() throws IOException, URISyntaxException, ParserConfigurationException, SAXException {
+    public void loadTestWebPage() throws IOException {
         Tidy tidy = new Tidy();
         tidy.setShowWarnings(false);
         htmlDocument = tidy
@@ -102,7 +99,7 @@ public class XpatherHtmlTest {
 
     @Test
     public void indexOfWillAppendAIndexPredicateToElement() throws TransformerException, IOException, XPathExpressionException {
-        XpathFragment xpathFragment = xPath().with(any(div().with(css("subnav-bar")).with(ul().with(li(indexOf(2))))));
+        XpathFragment xpathFragment = xPath().with(any(div().with(css("subnav-bar")).with(ul().with(li(atIndex(2))))));
 
         assertXpath(xpathFragment, locatesHtml(
                 "<li>\n" +
@@ -112,7 +109,7 @@ public class XpatherHtmlTest {
 
     @Test
     public void indexOfWillWorkInTheMiddleOfXpathExpression() {
-        XpathFragment xpathFragment = xPath().with(any(div().with(css("subnav-bar")).with(ul().with(li(indexOf(2)).with(anchor())))));
+        XpathFragment xpathFragment = xPath().with(any(div().with(css("subnav-bar")).with(ul().with(li(atIndex(2)).with(anchor())))));
 
         assertXpath(xpathFragment, locatesHtml(
                 "<a class=\"dropdown defunct\" href=\"#\">Switch Tags (0)</a>"));
