@@ -16,8 +16,10 @@ Cookbook
 * Select a repeating element at index, i.e. //div/ul/li[2]
 
 
-[selectingRootNode]: Selecting the root node i.e. /Library][selectingRootNode
------------------------------------------------------------------------------
+<a id="selectingRootNode"/>
+Selecting the root node i.e. /Library][selectingRootNode
+--------------------------------------------------------
+
     import static xpather.XpathExpression.*;
     ...
     xPath().with(element("Library")).toXpath();
