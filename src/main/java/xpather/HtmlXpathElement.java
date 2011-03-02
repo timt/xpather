@@ -1,7 +1,7 @@
 package xpather;
 
-import static xpather.XpathAttribute.xpathAttribute;
-import static xpather.XpathElement.xpathElement;
+import static xpather.XpathExpression.xpathAttribute;
+import static xpather.XpathExpression.xpathElement;
 import static xpather.XpathPredicate.equalTo;
 
 public class HtmlXpathElement {

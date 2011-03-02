@@ -13,10 +13,6 @@ public class XpathAttribute extends XpathExpression<XpathAttribute>{
         });
     }
 
-    static XpathAttribute xpathAttribute(String name) {
-        return new XpathAttribute(name);
-    }
-
     static XpathFragment id(String value) {
         return xpathAttribute("id").ofValue(value);
     }

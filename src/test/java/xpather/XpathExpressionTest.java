@@ -4,10 +4,7 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static xpather.XpathAttribute.xpathAttribute;
-import static xpather.XpathElement.xpathElement;
-import static xpather.XpathExpression.xpathComposite;
-import static xpather.XpathPredicate.xpathPredicate;
+import static xpather.XpathExpression.*;
 
 public class XpathExpressionTest {
 

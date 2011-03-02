@@ -17,6 +17,22 @@ public class XpathExpression<T extends XpathExpression> implements XpathFragment
         this.xpathFragments.addAll(asList(xpathFragments));
     }
 
+    public static XpathExpression xPath() {
+        return new XpathExpression();
+    }
+
+    public static XpathElement xpathElement(String name) {
+        return new XpathElement(name);
+    }
+
+    static XpathAttribute xpathAttribute(String name) {
+        return new XpathAttribute(name);
+    }
+
+    static XpathPredicate xpathPredicate(String predicate) {
+        return new XpathPredicate(predicate);
+    }
+
     @Override
     public String toXpath() {
         String xpath = "";
@@ -34,9 +50,5 @@ public class XpathExpression<T extends XpathExpression> implements XpathFragment
     public T with(XpathFragment xpathFragment) {
         this.xpathFragments.add(xpathFragment);
         return (T)this;
-    }
-
-    public static XpathExpression xPath() {
-        return new XpathExpression();
     }
 }

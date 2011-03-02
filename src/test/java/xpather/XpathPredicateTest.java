@@ -9,7 +9,7 @@ import static xpather.XpathPredicate.*;
 public class XpathPredicateTest {
     @Test
     public void toXpathWillPutContentsInSquareBrackets() {
-        assertThat(xpathPredicate("1").toXpath(), is("[1]"));
+        assertThat(XpathExpression.xpathPredicate("1").toXpath(), is("[1]"));
     }
 
     @Test

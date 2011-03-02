@@ -11,10 +11,6 @@ public class XpathPredicate extends XpathExpression<XpathPredicate>{
         });
     }
 
-    static XpathPredicate xpathPredicate(String predicate) {
-        return new XpathPredicate(predicate);
-    }
-
     public static XpathDecorator<XpathPredicate> containing(final String value){
         return new XpathDecorator<XpathPredicate>() {
             @Override

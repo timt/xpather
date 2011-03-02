@@ -11,12 +11,8 @@ public class XpathElement extends XpathExpression<XpathElement> {
         });
     }
 
-    public static XpathElement xpathElement(String name) {
-        return new XpathElement(name);
-    }
-
     public static XpathFragment any(XpathElement xpathElement) {
-        return XpathElement.xpathElement(xpathElement.toXpath());
+        return xpathElement(xpathElement.toXpath());
     }
 
 }
