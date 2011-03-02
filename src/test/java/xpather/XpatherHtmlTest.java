@@ -128,7 +128,7 @@ public class XpatherHtmlTest {
 
 
     private String parseHtmlWithXpath(XpathFragment xpathElement) {
-        System.out.println("xpathElement.toXpath() = " + xpathElement.toXpath());
+        System.out.println("element.toXpath() = " + xpathElement.toXpath());
         try {
             NodeList result = (NodeList) newInstance().newXPath().compile(xpathElement.toXpath()).evaluate(htmlDocument, XPathConstants.NODESET);
             return prettyPrintNodeList(result.item(0));

@@ -14,7 +14,7 @@ public class XpathAttribute extends XpathExpression<XpathAttribute>{
     }
 
     static XpathFragment id(String value) {
-        return xpathAttribute("id").ofValue(value);
+        return attribute("id").ofValue(value);
     }
 
     public XpathFragment ofValue(String value) {

@@ -12,7 +12,7 @@ public class XpathElement extends XpathExpression<XpathElement> {
     }
 
     public static XpathFragment any(XpathElement xpathElement) {
-        return xpathElement(xpathElement.toXpath());
+        return element(xpathElement.toXpath());
     }
 
 }

@@ -1,24 +1,24 @@
 package xpather;
 
-import static xpather.XpathExpression.xpathAttribute;
-import static xpather.XpathExpression.xpathElement;
+import static xpather.XpathExpression.attribute;
+import static xpather.XpathExpression.element;
 import static xpather.XpathPredicate.equalTo;
 
 public class HtmlXpathElement {
     public static XpathElement html() {
-        return xpathElement("html");
+        return element("html");
     }
 
     public static XpathElement head() {
-        return xpathElement("head");
+        return element("head");
     }
 
     public static XpathElement title() {
-        return xpathElement("title");
+        return element("title");
     }
 
     public static XpathElement div() {
-        return xpathElement("div");
+        return element("div");
     }
 
     static XpathExpression css(String className) {
@@ -26,15 +26,15 @@ public class HtmlXpathElement {
     }
 
     static XpathExpression css(XpathDecorator xpathDecorator) {
-        return xpathDecorator.decorate(xpathAttribute("class"));
+        return xpathDecorator.decorate(attribute("class"));
     }
 
     static XpathElement ul(){
-        return xpathElement("ul");
+        return element("ul");
     }
 
     static XpathElement li(){
-        return xpathElement("li");
+        return element("li");
     }
 
     static XpathExpression li(XpathDecorator xpathDecorator){
@@ -42,7 +42,7 @@ public class HtmlXpathElement {
     }
 
     static XpathElement anchor(){
-        return xpathElement("a");
+        return element("a");
     }
 
 }

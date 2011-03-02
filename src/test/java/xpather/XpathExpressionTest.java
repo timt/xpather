@@ -10,9 +10,9 @@ public class XpathExpressionTest {
 
     @Test
     public void constructionWillCreateFragmentThatIsComposedOfPrameters() {
-        XpathElement element = xpathElement("Book");
-        XpathAttribute attribute = xpathAttribute("lang");
-        XpathPredicate predicate = xpathPredicate("2");
+        XpathElement element = element("Book");
+        XpathAttribute attribute = attribute("lang");
+        XpathPredicate predicate = predicate("2");
 
         assertThat(xpathComposite(element, attribute, predicate).toXpath(), is("/Book@lang[2]"));
     }
@@ -20,7 +20,7 @@ public class XpathExpressionTest {
     @Test
     public void withWillAddFragmentToXpathExpression(){
         XpathExpression xpathExpression = xpathComposite();
-        String xPath = xpathExpression.with(xpathElement("Book")).toXpath();
+        String xPath = xpathExpression.with(element("Book")).toXpath();
         assertThat(xPath,is("/Book"));
     }
 

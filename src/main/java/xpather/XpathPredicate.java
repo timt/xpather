@@ -15,7 +15,7 @@ public class XpathPredicate extends XpathExpression<XpathPredicate>{
         return new XpathDecorator<XpathPredicate>() {
             @Override
             public XpathPredicate decorate(XpathFragment xpathFragment) {
-                return xpathPredicate("contains(" + xpathFragment.toXpath() + ",'" + value + "')");
+                return predicate("contains(" + xpathFragment.toXpath() + ",'" + value + "')");
             }
         };
     }
@@ -24,7 +24,7 @@ public class XpathPredicate extends XpathExpression<XpathPredicate>{
         return new XpathDecorator<XpathPredicate>() {
             @Override
             public XpathPredicate decorate(XpathFragment xpathFragment) {
-                return xpathPredicate(xpathFragment.toXpath() + "='" + value + "'");
+                return predicate(xpathFragment.toXpath() + "='" + value + "'");
             }
         };
     }
@@ -33,7 +33,7 @@ public class XpathPredicate extends XpathExpression<XpathPredicate>{
         return new XpathDecorator<XpathExpression>() {
             @Override
             public XpathExpression decorate(XpathFragment xpathFragment) {
-                return new XpathExpression(xpathFragment, xpathPredicate("" + index));
+                return new XpathExpression(xpathFragment, predicate("" + index));
             }
         };
     }
