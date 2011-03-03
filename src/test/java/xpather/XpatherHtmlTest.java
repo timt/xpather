@@ -109,7 +109,7 @@ public class XpatherHtmlTest {
 
     @Test
     public void indexOfWillWorkInTheMiddleOfXpathExpression() {
-        XpathFragment xpathFragment = xPath().with(any(div().with(css("subnav-bar")).with(ul().with(li(atIndex(2)).with(anchor())))));
+        XpathFragment xpathFragment = xPath().with(any(div().with(css(containing("subnav-bar"))).with(ul().with(li(atIndex(2)).with(anchor())))));
 
         assertXpath(xpathFragment, locatesHtml(
                 "<a class=\"dropdown defunct\" href=\"#\">Switch Tags (0)</a>"));

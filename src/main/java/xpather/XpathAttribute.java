@@ -1,7 +1,5 @@
 package xpather;
 
-import static xpather.XpathPredicate.equalTo;
-
 public class XpathAttribute extends XpathExpression<XpathAttribute>{
 
     public XpathAttribute(final String name) {
@@ -14,11 +12,7 @@ public class XpathAttribute extends XpathExpression<XpathAttribute>{
     }
 
     static XpathFragment id(String value) {
-        return attribute("id").ofValue(value);
-    }
-
-    public XpathFragment ofValue(String value) {
-        return equalTo(value).decorate(this);
+        return attribute("id").is(value);
     }
 
     public XpathFragment containing(String value) {

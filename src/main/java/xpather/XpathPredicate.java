@@ -21,12 +21,7 @@ public class XpathPredicate extends XpathExpression<XpathPredicate>{
     }
 
     public static XpathDecorator<XpathPredicate> equalTo(final String value){
-        return new XpathDecorator<XpathPredicate>() {
-            @Override
-            public XpathPredicate decorate(XpathFragment xpathFragment) {
-                return predicate(xpathFragment.toXpath() + "='" + value + "'");
-            }
-        };
+        return new EqualToXpathDecorator(value);
     }
 
     public static XpathDecorator<XpathExpression> atIndex(final int index){
@@ -37,4 +32,5 @@ public class XpathPredicate extends XpathExpression<XpathPredicate>{
             }
         };
     }
+
 }

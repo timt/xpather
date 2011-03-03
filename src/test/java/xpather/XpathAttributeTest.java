@@ -13,8 +13,8 @@ public class XpathAttributeTest {
         assertThat(attribute("someAttribute").toXpath(), is("@someAttribute"));
     }
     @Test
-    public void ofValueWillReturnAttributeEqualsPredicateXpath() {
-        assertThat(attribute("someAttribute").ofValue("aValue").toXpath(), is("[@someAttribute='aValue']"));
+    public void equalToWillReturnAttributeEqualsPredicateXpath() {
+        assertThat(attribute("someAttribute").is("aValue").toXpath(), is("[@someAttribute='aValue']"));
     }
 
     @Test

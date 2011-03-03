@@ -4,18 +4,13 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static xpather.XpathPredicate.*;
+import static xpather.XpathPredicate.atIndex;
+import static xpather.XpathPredicate.containing;
 
 public class XpathPredicateTest {
     @Test
     public void toXpathWillPutContentsInSquareBrackets() {
         assertThat(XpathExpression.predicate("1").toXpath(), is("[1]"));
-    }
-
-    @Test
-    public void hasValueWillReturnEqualsPredicateXpath() {
-        XpathFragment someFragment = xpathFragment("something");
-        assertThat(equalTo("aValue").decorate(someFragment).toXpath(), is("[something='aValue']"));
     }
 
     @Test

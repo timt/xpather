@@ -51,4 +51,8 @@ public class XpathExpression<T extends XpathExpression> implements XpathFragment
         this.xpathFragments.add(xpathFragment);
         return (T)this;
     }
+
+    public XpathFragment is(String value) {
+        return XpathPredicate.equalTo(value).decorate(this);
+    }
 }

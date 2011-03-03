@@ -18,4 +18,9 @@ public class XpathElementTest {
     public void anyWillAddLeadingSlashToXpathElement() {
         assertThat(any(element("Book")).toXpath(), is("//Book"));
     }
+
+    @Test
+    public void equalToWillApplyEqualToPredicateToElement(){
+        assertThat(element("bookstore").with(element("book").with(element("price").is("35.00"))).toXpath(), is("/bookstore/book[price='35.00']"));
+    }
 }
