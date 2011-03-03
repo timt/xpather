@@ -8,7 +8,7 @@ Cookbook
 
 * Selecting the root node i.e. /Library
 * Select a node from the current node the document not matter where they are, i.e. /Library//Book
-* Select all the elements with a given value, i.e., /bookstore/book[price='35.00']
+* Select all the elements with a given value, i.e., //book[price='35.00']
 * Select a node with attribute, i.e. //Book/@language
 * Select a node with attribute with value, i.e. //Book[@language='english']
 * Select xHtml element with id, i.e. //div[@id='myId']
@@ -39,12 +39,12 @@ Will return the xpath expression
 
     /Library//Book
 
-Select all the elements with a given value, i.e., /bookstore//book[price='35.00']
+Select all the elements with a given value, i.e., //book[price='35.00']
 -------------------
 
     import static xpather.XpathExpression.*;
     ...
-    element("bookstore").with(any(element("book").equalTo("35.00"))).toXpath();
+    any(element("book")).with(element("price").equalTo("35.00")).toXpath();
 
 Will return the xpath expression
 
