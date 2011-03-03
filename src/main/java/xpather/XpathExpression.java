@@ -10,12 +10,12 @@ import static xpather.XpathPredicate.index;
 public class XpathExpression<T extends XpathExpression> implements XpathFragment {
     private List<XpathFragment> xpathFragments=new ArrayList<XpathFragment>();
 
-    public static XpathExpression xpathComposite(XpathFragment... xpathFragments) {
+    public static XpathExpression xpathExpression(XpathFragment... xpathFragments) {
         return new XpathExpression(xpathFragments);
 
     }
 
-    public XpathExpression(XpathFragment... xpathFragments) {
+    protected XpathExpression(XpathFragment... xpathFragments) {
         this.xpathFragments.addAll(asList(xpathFragments));
     }
 

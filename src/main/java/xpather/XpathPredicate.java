@@ -28,7 +28,7 @@ public class XpathPredicate extends XpathExpression<XpathPredicate>{
         return new XpathDecorator<XpathExpression>() {
             @Override
             public XpathExpression decorate(XpathFragment xpathFragment) {
-                return new XpathExpression(xpathFragment, predicate("" + index));
+                return xpathExpression(xpathFragment, predicate("" + index));
             }
         };
     }
