@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static xpather.XpathPredicate.atIndex;
 import static xpather.XpathPredicate.containing;
+import static xpather.XpathPredicate.index;
 
 public class XpathPredicateTest {
     @Test
@@ -22,7 +22,7 @@ public class XpathPredicateTest {
     @Test
     public void indexOfWillAppendIndexPredicateToXpath(){
         XpathFragment someFragment = xpathFragment("something");
-        assertThat(atIndex(2).decorate(someFragment).toXpath(), is("something[2]"));
+        assertThat(index(2).decorate(someFragment).toXpath(), is("something[2]"));
 
     }
 

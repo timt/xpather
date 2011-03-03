@@ -19,11 +19,10 @@ import java.io.StringWriter;
 
 import static javax.xml.xpath.XPathFactory.newInstance;
 import static org.junit.Assert.assertEquals;
-import static xpather.HtmlXpathElement.*;
 import static xpather.XpathAttribute.id;
 import static xpather.XpathElement.any;
 import static xpather.XpathExpression.xPath;
-import static xpather.XpathPredicate.atIndex;
+import static xpather.XpathHtmlElement.*;
 import static xpather.XpathPredicate.containing;
 
 public class XpatherHtmlTest {
@@ -75,7 +74,7 @@ public class XpatherHtmlTest {
     @Test
     public void cssWillFindTagWithAttributeWithClassOfValue() throws TransformerException, IOException, XPathExpressionException {
         assertXpath(
-                xPath().with(any(div().with(css("full-button")))),
+                xPath().with(any(div().with(XpathHtmlAttribute.css("full-button")))),
                 locatesHtml("<div class=\"full-button\">\n" +
                         "    <button class=\"classy\" type=\"submit\">\n" +
                         "        <span>Go</span>\n" +
@@ -86,20 +85,20 @@ public class XpatherHtmlTest {
     @Test
     public void containingWillFindTagWithAttributeWithClassOfValue() throws TransformerException, IOException, XPathExpressionException {
         assertXpath(
-                xPath().with(any(div().with(css(containing("some-other-class"))))),
+                xPath().with(any(div().with(XpathHtmlAttribute.css(containing("some-other-class"))))),
                 locatesHtml("<div style=\"display:none\" class=\"metabox-loader, some-other-class\" id=\"repo_details_loader\">Sending Request</div>"));
     }
 
 
     @Test
     public void cssWillFindTagWithAttributeClassContainingValue() throws TransformerException, IOException, XPathExpressionException {
-        XpathFragment xpathFragment = xPath().with(any(div().with(css(containing("some-other-class")))));
+        XpathFragment xpathFragment = xPath().with(any(div().with(XpathHtmlAttribute.css(containing("some-other-class")))));
         assertXpath(xpathFragment, locatesHtml("<div style=\"display:none\" class=\"metabox-loader, some-other-class\" id=\"repo_details_loader\">Sending Request</div>"));
     }
 
     @Test
     public void indexOfWillAppendAIndexPredicateToElement() throws TransformerException, IOException, XPathExpressionException {
-        XpathFragment xpathFragment = xPath().with(any(div().with(css("subnav-bar")).with(ul().with(li(atIndex(2))))));
+        XpathFragment xpathFragment = xPath().with(any(div().with(XpathHtmlAttribute.css("subnav-bar")).with(ul().with(li().atIndex(2)))));
 
         assertXpath(xpathFragment, locatesHtml(
                 "<li>\n" +
@@ -108,8 +107,8 @@ public class XpatherHtmlTest {
     }
 
     @Test
-    public void indexOfWillWorkInTheMiddleOfXpathExpression() {
-        XpathFragment xpathFragment = xPath().with(any(div().with(css(containing("subnav-bar"))).with(ul().with(li(atIndex(2)).with(anchor())))));
+    public void indexOfWillWorkInTheMiddleOfXpathExpressionWhenFollowsContains() {
+        XpathFragment xpathFragment = xPath().with(any(div().with(XpathHtmlAttribute.css(containing("subnav-bar"))).with(ul().with(li().atIndex(2).with(anchor())))));
 
         assertXpath(xpathFragment, locatesHtml(
                 "<a class=\"dropdown defunct\" href=\"#\">Switch Tags (0)</a>"));

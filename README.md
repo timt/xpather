@@ -8,6 +8,7 @@ Cookbook
 
 * Selecting the root node i.e. /Library
 * Select a node from the current node the document not matter where they are, i.e. /Library//Book
+* Select all the elements with a given value, i.e., /bookstore/book[price='35.00']
 * Select a node with attribute, i.e. //Book/@language
 * Select a node with attribute with value, i.e. //Book[@language='english']
 * Select xHtml element with id, i.e. //div[@id='myId']
@@ -33,6 +34,17 @@ Select a node from the current node the document no matter where they are, i.e. 
     import static xpather.XpathExpression.*;
     ...
     element("Library").with(any(element("Book"))).toXpath();
+
+Will return the xpath expression
+
+    /Library//Book
+
+Select all the elements with a given value, i.e., /bookstore//book[price='35.00']
+-------------------
+
+    import static xpather.XpathExpression.*;
+    ...
+    element("bookstore").with(any(element("book").equalTo("35.00"))).toXpath();
 
 Will return the xpath expression
 
@@ -101,7 +113,7 @@ Select a repeating element at index, i.e. //div/ul/li[2]
 
     import static xpather.XpathExpression.*;
     ...
-    any(div().with(ul().with(li(atIndex(2))))).toXpath();
+    any(div().with(ul().with(li().atIndex(2)))).toXpath();
 
 Will return the xpath expression
 

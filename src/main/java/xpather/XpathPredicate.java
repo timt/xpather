@@ -24,7 +24,7 @@ public class XpathPredicate extends XpathExpression<XpathPredicate>{
         return new EqualToXpathDecorator(value);
     }
 
-    public static XpathDecorator<XpathExpression> atIndex(final int index){
+    public static XpathDecorator<XpathExpression> index(final int index){
         return new XpathDecorator<XpathExpression>() {
             @Override
             public XpathExpression decorate(XpathFragment xpathFragment) {

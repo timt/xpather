@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static xpather.XpathPredicate.equalTo;
+import static xpather.XpathPredicate.index;
 
 public class XpathExpression<T extends XpathExpression> implements XpathFragment {
     private List<XpathFragment> xpathFragments=new ArrayList<XpathFragment>();
@@ -52,7 +54,11 @@ public class XpathExpression<T extends XpathExpression> implements XpathFragment
         return (T)this;
     }
 
-    public XpathFragment is(String value) {
-        return XpathPredicate.equalTo(value).decorate(this);
+    public XpathPredicate is(String value) {
+        return equalTo(value).decorate(this);
+    }
+
+    public XpathExpression atIndex(int index) {
+        return index(index).decorate(this);
     }
 }
