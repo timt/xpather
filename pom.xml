@@ -10,6 +10,11 @@
     <name>xpather</name>
     <url>http://maven.apache.org</url>
 
+    <scm>
+        <url>scm:git:git://github.com/timt/xpather.git</url>
+        <connection>scm:git:git://github.com/timt/xpather.git</connection>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
