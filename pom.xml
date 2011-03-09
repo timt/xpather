@@ -2,13 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>xpather</groupId>
+    <groupId>org.tbag.xpather</groupId>
     <artifactId>xpather</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <name>xpather</name>
-    <url>http://maven.apache.org</url>
+    <version>1.0-SNAPSHOT</version>
+    <description>Xpather is a simple DSL for generating xpath expressions, including specific support for creating xpath expression for xHtml</description>
+
+    <url>https://github.com/timt/xpather</url>
 
     <scm>
         <url>scm:git:git://github.com/timt/xpather.git</url>
