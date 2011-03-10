@@ -7,7 +7,8 @@
     <packaging>jar</packaging>
     <name>xpather</name>
     <description>
-        Xpather is a simple DSL for generating xpath expressions, including specific support for creating xpath expression for xHtml
+        Xpather is a simple DSL for generating xpath expressions, including specific support for creating xpath
+        expression for xHtml
     </description>
 
     <url>https://github.com/timt/xpather</url>
@@ -32,13 +33,13 @@
     </distributionManagement>
 
     <developers>
-         <developer>
-             <id>timt</id>
-             <roles>
-                 <role>Developer</role>
-             </roles>
-         </developer>
-     </developers>
+        <developer>
+            <id>timt</id>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -66,6 +67,17 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <header>src/license/header.txt</header>
+                    <includes>
+                        <include>src/**/*.java</include>
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>
